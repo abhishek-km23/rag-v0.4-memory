@@ -62,8 +62,6 @@ Answer + Citations
 └── README.md
 
 
-
-
 ---
 
 ## How to Run
@@ -81,8 +79,8 @@ This creates or updates the persistent FAISS vector store.
 ### 2. Ask Questions
 python main_qa.py
 
-Ask questions related to the ingested documents.
-Each answer is returned with citations.
+- Ask questions related to the ingested documents.
+- Each answer is returned with citations.
 
 ### Tech Stack
 
