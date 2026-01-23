@@ -40,7 +40,7 @@ Answer + Citations
 ---
 
 ## Project Structure
-
+```
 .
 ├── main_ingest.py        # PDF ingestion (write path)
 ├── main_qa.py            # Question answering (read path)
@@ -61,7 +61,7 @@ Answer + Citations
 ├── .gitignore
 └── README.md
 
-
+```
 ---
 
 ## How to Run
