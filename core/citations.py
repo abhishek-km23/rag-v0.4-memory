@@ -24,4 +24,4 @@ def format_citations(docs: List[Document]) -> str:
             f"    \"{snippet}...\""
         )
 
-    return "\n".join(citations)
+    return citations

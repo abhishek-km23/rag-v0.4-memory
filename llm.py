@@ -8,5 +8,6 @@ def load_llm():
     return OllamaLLM(
         model="llama3",
         temperature=0.0,
-        num_gpu=0
+        num_gpu=0,
+        streaming=False
     )
