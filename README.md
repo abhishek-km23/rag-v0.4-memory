@@ -82,23 +82,23 @@ Key design principle:
             (Ingestion time)
                    │
     ┌──────────────▼──────────────┐
-    │  Chunking (chunker.py)       │
-    │  ─ split into chunks         │
-    │  ─ add chunk_id              │
-    │  ─ add embedding_key (hash)  │
+    │  Chunking (chunker.py)      │
+    │  ─ split into chunks        │
+    │  ─ add chunk_id             │
+    │  ─ add embedding_key (hash) │
     └──────────────┬──────────────┘
                    │
             (Embedding step)
                    │
     ┌──────────────▼──────────────┐
-    │  Embedding Cache             │
-    │  ─ if same text → reuse      │
-    │  ─ else → compute embedding  │
+    │  Embedding Cache            │
+    │  ─ if same text → reuse     │
+    │  ─ else → compute embedding │
     └──────────────┬──────────────┘
                    │
     ┌──────────────▼──────────────┐
-    │  FAISS Vector Store          │
-    │  (persistent on disk)        │
+    │  FAISS Vector Store         │
+    │  (persistent on disk)       │
     └──────────────┬──────────────┘
                    │
           ─────────┼─────────
