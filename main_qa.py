@@ -1,5 +1,6 @@
 from llm import load_llm
 from core.qa import answer_question
+from core.memory import SESSION_MEMORY
 
 
 def qa_loop():
@@ -20,6 +21,13 @@ def qa_loop():
 
         try:
             answer, citations = answer_question(question, llm)
+
+            SESSION_MEMORY.append({
+                "question": question,
+                "answer": answer,
+                "used_doc_ids": citations
+            })
+
 
             print("\nAnswer:")
             print(answer)

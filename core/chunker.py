@@ -9,6 +9,7 @@ Docstring for v0.3.core.chunker
         Return the list of chunked Document objects.
 '''
 
+import hashlib
 from typing import List
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
@@ -31,6 +32,8 @@ def chunk_documents(
     chunks = splitter.split_documents(docs)
 
     for i, chunk in enumerate(chunks):
-        chunk.metadata["chunk_id"] = f"chunk_{uuid.uuid4().hex[:8]}"
+        chunk.metadata["chunk_id"] = f"{chunk.metadata.get('source', 'doc')}__{chunk.metadata.get('page', -1)}__{i}"
+        chunk.metadata["embedding_key"] = hashlib.sha256(chunk.page_content.encode("utf-8")).hexdigest()
+
 
     return chunks

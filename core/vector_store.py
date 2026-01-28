@@ -14,7 +14,6 @@ Docstring for v0.3.core.vector_store
 
 import os
 from typing import List
-
 from langchain_community.vectorstores import FAISS
 from core.embeddings import load_embeddings
 from langchain_core.documents import Document
@@ -23,6 +22,7 @@ from langchain_core.documents import Document
 VECTOR_STORE_DIR = "vector_store"
 INDEX_FILE = os.path.join(VECTOR_STORE_DIR, "index.faiss")
 
+EMBEDDING_CACHE = {}
 
 def load_vector_store() -> FAISS:
     """
@@ -54,15 +54,38 @@ def add_documents(docs: List[Document]) -> None:
     embeddings = load_embeddings()
 
     # First-time creation
+    texts = []
+    vectors = []
+    metadatas = []
+
+    for doc in docs:
+        key = doc.metadata["embedding_key"]
+
+        if key in EMBEDDING_CACHE:
+            vector = EMBEDDING_CACHE[key]
+        else:
+            vector = embeddings.embed_query(doc.page_content)
+            EMBEDDING_CACHE[key] = vector
+
+        texts.append(doc.page_content)
+        vectors.append(vector)
+        metadatas.append(doc.metadata)
+
     if not os.path.exists(INDEX_FILE):
-        vector_store = FAISS.from_documents(docs, embeddings)
+        vector_store = FAISS.from_embeddings(
+            vectors,
+            texts,
+            metadatas,
+            embeddings
+        )
     else:
         vector_store = FAISS.load_local(
             VECTOR_STORE_DIR,
             embeddings,
             allow_dangerous_deserialization=True
         )
-        vector_store.add_documents(docs)
+        vector_store.add_embeddings(vectors, texts, metadatas)
+
 
     vector_store.save_local(VECTOR_STORE_DIR)
 
