@@ -74,6 +74,22 @@ Key design principle:
 ```
 ---
 
+## 🖼️ System Flow (Pictorial View)
+
+```mermaid
+flowchart TD
+    A[PDF Documents] --> B[Chunking<br/>(chunk_id + embedding_key)]
+    B --> C[Embedding Cache<br/>(hash-based reuse)]
+    C --> D[FAISS Vector Store<br/>(persistent)]
+    D --> E[Retriever]
+    E --> F[Context Builder<br/>(chunks + citations)]
+    F --> G[Prompt Builder]
+    H[Session Memory<br/>(Previous Q/A)] --> G
+    G --> I[LLM (Ollama)]
+    I --> J[Answer + Citations]
+    J --> H
+```
+
 ## ▶️ How to Run
 
 ### 1. Activate virtual environment
