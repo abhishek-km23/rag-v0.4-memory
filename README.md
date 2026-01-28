@@ -116,16 +116,26 @@ flowchart TD
 
 ```
 ---
+## 🔍 How this maps EXACTLY to your diagram
 
-## 🧠 How to **read this diagram**
-- **Top → bottom** = data flow
-- **Left loop (H → G)** = conversational memory
-- **Bottom loop (J → H)** = memory update after each answer
-- Retrieval path is **unchanged** by memory
+| Your ASCII Box | Mermaid Box |
+|---------------|-------------|
+| Your PDF | `Your PDF` |
+| Chunking (split, chunk_id, hash) | `Chunking` |
+| Embedding Cache | `Embedding Cache` |
+| FAISS Vector Store (disk) | `FAISS Vector Store` |
+| Retriever | `Retriever` |
+| Context Builder | `Context Builder` |
+| SESSION MEMORY | `Session Memory` |
+| PROMPT to LLM | `Prompt to LLM` |
+| LLM (Ollama) | `LLM Ollama` |
+| Answer + Citations | `Answer with Citations` |
 
-This now renders **100% correctly on GitHub**.
+The **loops and order are identical**.  
+Only **text inside boxes** is simplified for Mermaid.
 
 ---
+
 
 ## ▶️ How to Run
 
