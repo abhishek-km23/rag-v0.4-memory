@@ -57,22 +57,21 @@ Key design principle:
 ---
 
 ## 📂 Project Structure
-
-rag-v0.4-memory/
-├── main_ingest.py # PDF ingestion & indexing
-├── main_qa.py # Interactive Q/A loop
-├── core/
-│ ├── chunker.py # Chunking + deterministic metadata + embedding_key
-│ ├── vector_store.py # FAISS store + in-memory embedding cache
-│ ├── qa.py # Answer generation with citations + memory injection
-│ ├── memory.py # Session-level conversational memory (v0.4)
-│ ├── retriever.py # Retriever wrapper
-│ ├── embeddings.py # Embedding model loader
-│ ├── citations.py # Citation formatting logic
-│ └── init.py
-└── vector_store/ # Persistent FAISS index
-
-
+```
+    rag-v0.4-memory/
+    ├── main_ingest.py # PDF ingestion & indexing
+    ├── main_qa.py # Interactive Q/A loop
+    ├── core/
+    │ ├── chunker.py # Chunking + deterministic metadata + embedding_key
+    │ ├── vector_store.py # FAISS store + in-memory embedding cache
+    │ ├── qa.py # Answer generation with citations + memory injection
+    │ ├── memory.py # Session-level conversational memory (v0.4)
+    │ ├── retriever.py # Retriever wrapper
+    │ ├── embeddings.py # Embedding model loader
+    │ ├── citations.py # Citation formatting logic
+    │ └── init.py
+    └── vector_store/ # Persistent FAISS index
+```
 ---
 
 ## ▶️ How to Run
