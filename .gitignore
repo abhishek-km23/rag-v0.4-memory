@@ -1,4 +1,50 @@
-vector_store/
-data/*.pdf
+# =========================
+# Python
+# =========================
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# =========================
+# Virtual Environment
+# =========================
+.venv/
+venv/
+ENV/
+
+# =========================
+# Vector Store / Index
+# (can be regenerated)
+# =========================
+vector_store/
+*.faiss
+*.pkl
+
+# =========================
+# Data / PDFs
+# (may contain private content)
+# =========================
+data/
+*.pdf
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Secrets / Config
+# =========================
+.env
