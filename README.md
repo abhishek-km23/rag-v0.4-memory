@@ -75,29 +75,48 @@ Key design principle:
 ---
 
 ## 🖼️ System Flow (Pictorial View)
-
 ```mermaid
 flowchart TD
-    A[PDF Documents]
-    B[Chunking]
-    C[Embedding Cache]
-    D[FAISS Vector Store]
-    E[Retriever]
-    F[Context Builder]
-    G[Prompt Builder]
-    H[Session Memory]
-    I[LLM - Ollama]
-    J[Answer with Citations]
+
+    A[Your PDF]
 
     A --> B
+
+    B[Chunking (chunker.py)\n- split into chunks\n- add chunk_id\n- add embedding_key]
+
     B --> C
+
+    C[Embedding Cache\n- reuse if exists\n- compute if missing]
+
     C --> D
+
+    D[FAISS Vector Store\n(persistent on disk)]
+
+    %% Runtime boundary
     D --> E
+
+    E[Retriever\n- finds relevant chunks]
+
     E --> F
+
+    F[Context Builder\n(chunk text + citations)]
+
     F --> G
+
+    G[Prompt to LLM\n- memory (if any)\n- retrieved context\n- current question]
+
+    H[Session Memory\n(previous Q/A only)]
+
     H --> G
+
     G --> I
+
+    I[LLM (Ollama)]
+
     I --> J
+
+    J[Answer + Citations]
+
     J --> H
 ```
 ---
