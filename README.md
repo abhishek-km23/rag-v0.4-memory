@@ -100,6 +100,17 @@ flowchart TD
     I --> J
     J --> H
 ```
+---
+
+## 🧠 How to **read this diagram**
+- **Top → bottom** = data flow
+- **Left loop (H → G)** = conversational memory
+- **Bottom loop (J → H)** = memory update after each answer
+- Retrieval path is **unchanged** by memory
+
+This now renders **100% correctly on GitHub**.
+
+---
 
 ## ▶️ How to Run
 
