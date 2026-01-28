@@ -78,15 +78,26 @@ Key design principle:
 
 ```mermaid
 flowchart TD
-    A[PDF Documents] --> B[Chunking<br/>(chunk_id + embedding_key)]
-    B --> C[Embedding Cache<br/>(hash-based reuse)]
-    C --> D[FAISS Vector Store<br/>(persistent)]
-    D --> E[Retriever]
-    E --> F[Context Builder<br/>(chunks + citations)]
-    F --> G[Prompt Builder]
-    H[Session Memory<br/>(Previous Q/A)] --> G
-    G --> I[LLM (Ollama)]
-    I --> J[Answer + Citations]
+    A[PDF Documents]
+    B[Chunking]
+    C[Embedding Cache]
+    D[FAISS Vector Store]
+    E[Retriever]
+    F[Context Builder]
+    G[Prompt Builder]
+    H[Session Memory]
+    I[LLM - Ollama]
+    J[Answer with Citations]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    H --> G
+    G --> I
+    I --> J
     J --> H
 ```
 
